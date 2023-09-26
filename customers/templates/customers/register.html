@@ -1,0 +1,24 @@
+{% extends 'robots/base.html' %}
+{% block content %}
+
+<div style="margin-top: 100px;" class="container">
+    <div class="col-md-6 offset-md-3">
+        <h1>Ваш заказ:</h1>
+        <p><b>Модель: </b>{{ robot.model }}</p>
+        <p><b>Версия: </b>{{ robot.version }}</p>
+        <h1 class="mt-5">Оставьте свой Email:</h1>
+    </div>
+
+    <form method="post" class="mt-5">
+        {% csrf_token %}
+        <div class="offset-md-3 col-md-6">
+            <div class="mb-3">
+              <label for="email">Email: </label>
+              <input name="email" email type="email" class="form-control mt-2" id="email" placeholder="Введите свой email">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Отправить</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
