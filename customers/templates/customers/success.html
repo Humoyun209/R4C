@@ -3,14 +3,13 @@
 {% block content %}
 
 <div class="container mt-5">
-    {% if robot.is_exists %}
+    {% if order.status == 1 %}
     <h1>Поздравляем, вы успешно заказали робота!!!</h1>
     {% else %}
     <h1>Ваш заказ в ожидании... Мы сообщим вам по почте когда появитья этот робот</h1>
     {% endif %}
     <div class="mt-5">
-        <p><b>Модель: </b>{{ robot.model }}</p>
-        <p><b>Версия: </b>{{ robot.version }}</p>
+        <p><b>Робот: </b>{{ order.robot_serial }}</p>
         <p><b>Статус заказа: </b>{{ order.get_status_display }}</p>
     </div>
 </div>

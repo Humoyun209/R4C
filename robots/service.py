@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from django.http import HttpResponse
 from django.utils.timezone import get_current_timezone
 from django.db.models import Count
 import xlsxwriter
@@ -30,3 +31,16 @@ def write_report_in_excel(arr: list):
             row += 1
         worksheet.set_column('C:C', 25)
     workbook.close()
+
+
+def get_excel_response(week_ago):
+    response = HttpResponse(
+        content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+    content_disposition = (
+        f"filename=robots_{week_ago.day}-{week_ago.month}-{week_ago.year}"
+    )
+    response["Content-Disposition"] = content_disposition
+    with open("media/files/robots.xlsx", "rb") as f:
+        response.content = f.read()
+    return response

@@ -18,16 +18,16 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'robots:get_all_robots' %}">Catalog</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'orders:my_orders' %}">My orders</a>
+              </li>
             </ul>
             <form role="search">
               {% if request.user.is_staff %}
               <div class="d-flex gap-2">
-                <p>Произведение роботов в последней недели</p>
+                <p>Произведенные роботы в последней неделе</p>
                 <a href="{% url 'robots:get_excel' %}">Скачать</a>
               </div>
-              
-              {% else %}
-              <a href="#" class="btn btn-outline-success">Мои заказы</a>
               {% endif %}
             </form>
           </div>

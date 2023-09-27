@@ -2,12 +2,6 @@
 {% block content %}
 
 <div style="margin-top: 100px;" class="container">
-    <div class="col-md-6 offset-md-3">
-        <h1>Ваш заказ:</h1>
-        <p><b>Робот: </b>{{ serial }}</p>
-        <h1 class="mt-5">Оставьте свой Email:</h1>
-    </div>
-
     <form method="post" class="mt-5">
         {% csrf_token %}
         <div class="offset-md-3 col-md-6">

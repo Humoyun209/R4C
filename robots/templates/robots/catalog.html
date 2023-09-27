@@ -1,20 +1,21 @@
 {% extends 'robots/base.html' %}
 {% block content %}
-      <!-- Robots -->
-      <div class="container d-flex flex-column gap-5 mt-5">
-        {% for r in robots %}
-            <div class="card">
-                <h5 class="card-header">Модель: {{ r.model }}</h5>
-                <div class="card-body">
-                <h5 class="card-title">Версия: {{ r.version }}</h5>
-                <p class="card-text">Доступность: {% if r.is_exists > 0 %} Да {% else %} Нет {% endif %}</p>
-                {% if r.is_exists > 0 %}
-                <a href="{% url 'customers:order_create' r.model r.version %}" class="btn btn-primary"> Заказать </a>
-                {% else %}
-                <a href="{% url 'customers:order_create' r.model r.version %}" class="btn btn-primary"> Ожидать </a>
-                {% endif %}
-                </div>
-            </div>
-        {% endfor %}
-      </div>
+<!-- Robots -->
+<div class="container d-flex flex-column gap-5 mt-5">
+  {% for r in robots %}
+  <div class="card">
+    <h5 class="card-header">Модель: {{ r.model }}</h5>
+    <div class="card-body">
+      <h5 class="card-title">Версия: {{ r.version }}</h5>
+      <p class="card-text">Доступность: {% if r.count > 0 %} Да {% else %} Нет {% endif %}</p>
+      <p class="card-text">Остался: {{ r.count }} </p>
+      {% if r.count > 0 %}
+      <a href="{% url 'customers:order_create' r.serial %}" class="btn btn-primary"> Заказать </a>
+      {% else %}
+      <a href="{% url 'customers:order_create' r.serial %}" class="btn btn-primary"> Ожидать </a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}

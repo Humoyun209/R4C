@@ -1,0 +1,15 @@
+{% extends 'robots/base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+    <h1 class="my-5">Ваш заказ</h1>
+
+    {% for ord in orders %}
+    <div class="mb-5">
+        <h4>Робот: {{ ord.robot_serial }}</h4>
+        <h4>Статус заказа: {{ ord.get_status_display }}</h4>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
