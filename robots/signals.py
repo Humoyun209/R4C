@@ -7,7 +7,9 @@ from robots.models import Robot
 
 
 def update_order_status(instance):
-    for order in Order.objects.filter(robot_serial=instance.serial, status=2):
+    order = Order.objects.filter(robot_serial=instance.serial, status=2)
+    if order.exists():
+        order = order.first()
         order.status = 1
         order.save()
         subject = "Робот тепер сушествует!!!"
@@ -15,7 +17,6 @@ def update_order_status(instance):
         from_email = "test@mail.ru"
         to_emails = [order.customer.email]
         send_mail(subject, message, from_email, to_emails)
-        break
 
 
 @receiver(post_save, sender=Robot)
