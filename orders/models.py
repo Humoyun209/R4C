@@ -10,9 +10,11 @@ class Order(models.Model):
         (ORDERED, 'Заказан'),
         (PENDING, 'В ожидании')
     ]
-    
     customer = models.ForeignKey(Customer, 
                                  on_delete=models.CASCADE, 
                                  related_name='orders')
     robot_serial = models.CharField(max_length=5)
     status = models.SmallIntegerField(choices=STATUSES)
+    
+    def __str__(self) -> str:
+        return f'Order#{self.id} - {self.robot_serial}'

@@ -14,6 +14,12 @@ def get_week_ago():
     return last_week_now
 
 
+def get_timezone_date(json_date: str):
+    to_time = datetime.strptime(json_date, "%Y-%m-%d %H:%M:%S")
+    timezone_time = to_time.astimezone(get_current_timezone())
+    return timezone_time
+
+
 def write_report_in_excel(arr: list):
     workbook = xlsxwriter.Workbook('media/files/robots.xlsx')
     bold = workbook.add_format({'bold': True})
